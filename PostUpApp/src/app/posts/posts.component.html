@@ -1,0 +1,14 @@
+<!-- <pre>
+    {{allPosts$ | async | json}}
+  </pre> -->
+<mat-grid-list cols="2" rowHeight="5:1" style="margin-top:10%">
+  <mat-grid-tile *ngFor="let post of (allPosts$ | async)">
+    <mat-card style="width:80%">
+      <div fxLayout="row" fxLayoutAlign="space-evenly center">
+        <img mat-card-avatar src="{{post.author.profileImage}}" matTooltip="{{post.author.firstName}} {{post.author.lastName}}" matTooltipPosition="above">
+        <h3 fxFlex="70">{{post.title}}</h3>
+        <button fxFlex="20" mat-button color="primary" (click)="view(post.id)">VIEW</button>
+      </div>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>

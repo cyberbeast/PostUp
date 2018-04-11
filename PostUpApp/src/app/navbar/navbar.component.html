@@ -1,0 +1,22 @@
+<mat-toolbar color="primary" style="    box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
+">
+  <span style="padding-right: 1em;">
+    <button mat-icon-button (click)="toggleSidenav()">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </span>
+  <!-- <div class="d-flex flex-row justify-content-between"> -->
+
+  <span style="font-weight: bolder">POST </span>
+  <span style="font-weight: lighter; padding-right: 0.3em;"> UP</span>
+  <!-- <div class="version">UP</div> -->
+  <!-- </div> -->
+  <!-- This fills the remaining space of the current row -->
+  <span class="fill-space"></span>
+
+  <!-- <div></div> -->
+  <img *ngIf="!((user$ | async)?.firstName === '')" mat-card-avatar src="{{(user$ | async)?.profileImage}} ">
+  <span *ngIf="(user$ | async)==null || (user$ | async)?.firstName==='' ">
+    <button mat-raised-button color="accent" (click)="login() ">Login</button>
+  </span>
+</mat-toolbar>

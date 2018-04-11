@@ -1,0 +1,31 @@
+.bounds {
+  height: 100vh;
+}
+
+.postSection {
+  //   background: red;
+  //   color: white;
+  overflow: auto;
+}
+
+.commentSection {
+  //   background: yellow;
+  // overflow: auto;
+}
+
+.commentsContent {
+  overflow: auto;
+}
+
+.postSection,
+.commentSection {
+  padding-top: 20px;
+}
+
+.content {
+  min-width: 300px;
+  padding-top: 3%;
+
+  overflow: hidden;
+  /*height: 400px;*/
+}

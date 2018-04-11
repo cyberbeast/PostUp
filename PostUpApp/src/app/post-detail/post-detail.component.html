@@ -1,0 +1,89 @@
+<div class="bounds" style="overflow:hidden">
+
+  <div class="content" fxLayout="row" fxLayout.xs="column" fxFlexFill>
+
+    <div fxFlex="70" class="postSection" fxFlex.xs="55">
+      <mat-card style="height:90vh; margin:1.5% 1% 2% 1%">
+        <mat-card-header>
+          <img mat-card-avatar src="{{(selectedPost$ | async)?.author.profileImage}}">
+          <mat-card-title>{{(selectedPost$ | async)?.author.firstName}} {{(selectedPost$ | async)?.author.lastName}}</mat-card-title>
+
+          <mat-card-subtitle>{{(selectedPost$ | async)?.views}} views</mat-card-subtitle>
+        </mat-card-header>
+        <mat-divider></mat-divider>
+        <br />
+
+        <mat-card-title>{{(selectedPost$ | async)?.title}}</mat-card-title>
+        <mat-card-content>
+          {{(selectedPost$ | async)?.content}}
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div fxFlex class="commentSection">
+
+      <mat-card style="height:98%; margin:3% 2% 2% 1%; padding:0%">
+        <mat-toolbar style="background: white; padding:0">
+          <span style="padding-right: 1em;">
+            <button *ngIf="this.commentNavHistory.length > 1" mat-icon-button (click)="previous()">
+              <mat-icon>keyboard_arrow_left</mat-icon>
+            </button>
+          </span>
+          <span>Comments</span>
+        </mat-toolbar>
+        <mat-card-title>
+        </mat-card-title>
+        <mat-divider></mat-divider>
+
+        <div style="height: 95%">
+
+          <div class="content" fxLayout="column" fxFlexFill>
+            <div fxFlex style="overflow:auto">
+              <div *ngIf="(selectedComment$ | async) !== null">
+                <mat-card style="margin: 2%">
+                  <mat-card-header>
+                    <img mat-list-icon mat-card-avatar style="height:10%; width: 10%;" src="{{(selectedComment$|async)?.author.profileImage}}">
+                    <mat-card-title style="margin-bottom: 0;">{{(selectedComment$|async)?.comment}}</mat-card-title>
+                    <mat-card-subtitle>
+                      <p mat-line style="font-size:x-small; color:rgba(0, 0, 0, 0.54)">
+                        {{(selectedComment$|async)?.author.firstName}} {{(selectedComment$|async)?.author.lastName}}
+                      </p>
+                    </mat-card-subtitle>
+                  </mat-card-header>
+
+                  <mat-card-actions *ngIf="(selectedComment$|async)?.author.id === (currentUser$ | async).id">
+                    <button mat-icon-button color="warn">
+                      <mat-icon aria-label="Example icon-button with a heart icon">delete</mat-icon>
+                    </button>
+                  </mat-card-actions>
+                </mat-card>
+
+              </div>
+              <mat-list>
+                <mat-list-item *ngFor="let comment of (allComments$ | async); let i = index" (mouseenter)="commentIndex= i" (mouseleave)="commentIndex = -1">
+                  <img mat-list-icon mat-card-avatar src="{{comment.author.profileImage}}">
+                  <p mat-line>{{comment.comment}}</p>
+                  <p mat-line style="font-size:x-small; color:rgba(0, 0, 0, 0.54)"> {{comment.replyCount}} replies </p>
+                  <mat-icon (click)="setParent(comment.id, comment)" *ngIf="commentIndex == i" style="color: rgba(0, 0, 0, 0.54); cursor: pointer;">reply</mat-icon>
+                </mat-list-item>
+              </mat-list>
+
+            </div>
+            <div fxFlex="16" fxFlexOrder="2" fxFlex.xs="55">
+              <mat-divider></mat-divider>
+              <mat-form-field style="width: 80%; padding-left:2%">
+                <input #comment [(ngModel)]="commentValue" matInput placeholder="Comment">
+              </mat-form-field>
+              <button mat-icon-button color="primary" (click)="createComment(comment.value)">
+                <mat-icon aria-label="send-icon">send</mat-icon>
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+      </mat-card>
+    </div>
+
+  </div>
+
+</div>

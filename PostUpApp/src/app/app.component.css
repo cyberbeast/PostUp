@@ -1,0 +1,38 @@
+body {
+  margin: 0;
+  font-family: Roboto, sans-serif;
+}
+
+md-toolbar-row {
+  justify-content: space-between;
+}
+
+.new-post {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  color: white;
+}
+
+mat-sidenav {
+  width: 400px;
+}
+
+mat-card {
+  width: 100%;
+  margin-bottom: 5%;
+}
+
+mat-grid-tile {
+  margin: 2%;
+}
+
+mat-grid-list {
+  margin: 2% 15% 2% 2%;
+}
+
+/* @media only screen and (max-width: 400px) {
+  mat-sidenav {
+    width: 100%;
+  }
+} */
