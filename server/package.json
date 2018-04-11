@@ -38,7 +38,9 @@
 		"nodemon": "^1.12.1"
 	},
 	"babel": {
-		"presets": ["env"]
+		"presets": [
+			"env"
+		]
 	},
 	"repository": {
 		"type": "git",
