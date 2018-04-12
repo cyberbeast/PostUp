@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import * as fromStore from '../store';
 import { SelectedPost } from '../models/post.model';
 import { Comment } from '../models/comment.model';
@@ -20,7 +20,7 @@ export class PostDetailComponent implements OnInit {
   allComments$: Observable<Comment[]>;
   history: any[] = [];
   commentNavHistory: string[];
-  selectedComment$: Observable<Comment>;
+  selectedComment: Comment;
   currentParent: string;
   commentValue = '';
   currentUser$: Observable<User>;
@@ -31,7 +31,9 @@ export class PostDetailComponent implements OnInit {
   ) {
     this.selectedPost$ = store.select(fromStore.getSelectedPost);
     this.allComments$ = store.select(fromStore.getAllComments);
-    this.selectedComment$ = store.select(fromStore.getSelectedComment);
+    store
+      .select(fromStore.getSelectedComment)
+      .subscribe(selectedComment => (this.selectedComment = selectedComment));
     store.select(fromStore.getCurrentNavHistorySetting).subscribe(history => {
       this.commentNavHistory = history;
     });
@@ -52,6 +54,13 @@ export class PostDetailComponent implements OnInit {
         timestamp: new Date().toISOString()
       })
     );
+  }
+
+  deleteComment(id: string) {
+    console.log('Deleting... ', id);
+    this.store.dispatch(new fromStore.DeleteComment(id));
+    this.store.dispatch(new fromStore.SelectComment(id));
+    this.store.dispatch(new fromStore.FetchComments());
   }
 
   previous() {

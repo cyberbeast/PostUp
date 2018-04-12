@@ -78,6 +78,17 @@ export class PostService {
     );
   }
 
+  deleteComment(id: string): Observable<any> {
+    return this.apollo
+      .mutate({
+        mutation: queries.DELETE_COMMENT_MUTATION,
+        variables: {
+          id: id
+        }
+      })
+      .pipe(catchError((error: any) => Observable.throw(error.json())));
+  }
+
   createPost(newPost): Observable<any> {
     return this.apollo
       .mutate({

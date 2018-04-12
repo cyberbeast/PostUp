@@ -15,12 +15,12 @@ export class GraphQLModule {
   constructor(apollo: Apollo, httpLink: HttpLink) {
     // Create an http link:
     const http = httpLink.create({
-      uri: 'http://3287c204.ngrok.io/graphql'
+      uri: '<<YOUR GRAPHQL SERVER URI>>'
     });
 
     // Create a WebSocket link
     const ws = new WebSocketLink({
-      uri: `ws://3287c204.ngrok.io/subscriptions`,
+      uri: `<<YOUR GRAPHQL SUBSCRIPTIONS SERVER URI>>`,
       options: {
         reconnect: true
       }

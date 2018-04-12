@@ -38,20 +38,20 @@
 
           <div class="content" fxLayout="column" fxFlexFill>
             <div fxFlex style="overflow:auto">
-              <div *ngIf="(selectedComment$ | async) !== null">
+              <div *ngIf="(selectedComment) !== null">
                 <mat-card style="margin: 2%">
                   <mat-card-header>
-                    <img mat-list-icon mat-card-avatar style="height:10%; width: 10%;" src="{{(selectedComment$|async)?.author.profileImage}}">
-                    <mat-card-title style="margin-bottom: 0;">{{(selectedComment$|async)?.comment}}</mat-card-title>
+                    <img mat-list-icon mat-card-avatar style="height:10%; width: 10%;" src="{{(selectedComment)?.author.profileImage}}">
+                    <mat-card-title style="margin-bottom: 0;">{{(selectedComment)?.comment}}</mat-card-title>
                     <mat-card-subtitle>
                       <p mat-line style="font-size:x-small; color:rgba(0, 0, 0, 0.54)">
-                        {{(selectedComment$|async)?.author.firstName}} {{(selectedComment$|async)?.author.lastName}}
+                        {{(selectedComment)?.author.firstName}} {{(selectedComment)?.author.lastName}}
                       </p>
                     </mat-card-subtitle>
                   </mat-card-header>
 
-                  <mat-card-actions *ngIf="(selectedComment$|async)?.author.id === (currentUser$ | async).id">
-                    <button mat-icon-button color="warn">
+                  <mat-card-actions *ngIf="(selectedComment)?.author.id === (currentUser$ | async).id">
+                    <button mat-icon-button color="warn" (click)="deleteComment(selectedComment.id)">
                       <mat-icon aria-label="Example icon-button with a heart icon">delete</mat-icon>
                     </button>
                   </mat-card-actions>

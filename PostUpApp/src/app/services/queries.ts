@@ -100,3 +100,21 @@ export const GET_COMMENTS = gql`
     }
   }
 `;
+
+export const DELETE_COMMENT_MUTATION = gql`
+  mutation deleteCommentById($id: String!) {
+    deleteCommentById(id: $id) {
+      id
+      author {
+        id
+        firstName
+        lastName
+        profileImage
+      }
+      parent
+      comment
+      timestamp
+      replyCount
+    }
+  }
+`;

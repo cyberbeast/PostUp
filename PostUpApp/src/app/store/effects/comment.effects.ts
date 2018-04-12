@@ -49,4 +49,22 @@ export class CommentEffects {
         );
       })
     );
+
+  @Effect()
+  deleteComment$ = this.actions$.ofType(allCommentActions.DELETE_COMMENT).pipe(
+    switchMap((action: allCommentActions.DeleteComment) => {
+      return this.postService.deleteComment(action.payload).pipe(
+        map(
+          response =>
+            new allCommentActions.DeleteCommentSuccess(
+              response.data.deleteCommentById
+            )
+        ),
+        catchError(error => {
+          console.log(JSON.stringify(error));
+          return of(new allCommentActions.CreateNewCommentFail(error));
+        })
+      );
+    })
+  );
 }

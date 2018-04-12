@@ -52,6 +52,7 @@ export function reducer(
       };
     }
 
+    case actionsFromComment.DELETE_COMMENT_SUCCESS:
     case actionsFromComment.APPEND_NEW_COMMENT: {
       const comment = action.payload;
       var parent = comment.parent;
@@ -68,18 +69,11 @@ export function reducer(
         parent = state.entities[parent].parent;
       }
 
-      // console.log(newObject);
-
-      // const entities = Object.assign({}, state.entities, newObject, {
-      //   [comment.id]: comment
-      // });
-
       const entities = {
         ...state.entities,
         ...newObject,
         [comment.id]: comment
       };
-      // console.log(entities);
 
       console.log({
         ...state,

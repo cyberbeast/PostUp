@@ -10,6 +10,9 @@ export const SELECT_COMMENT = '[Comment] Select Comment';
 export const CREATE_NEW_COMMENT = '[Comment] Create New';
 export const CREATE_NEW_COMMENT_SUCCESS = '[Comment] Create New - Success';
 export const CREATE_NEW_COMMENT_FAIL = '[Comment] Create New - Fail';
+export const DELETE_COMMENT = '[Comment] Delete Comment';
+export const DELETE_COMMENT_SUCCESS = '[Comment] Delete Comment - Success';
+export const DELETE_COMMENT_FAIL = '[Comment] Delete Comment - Fail';
 
 export class FetchComments implements Action {
   readonly type = FETCH_COMMENTS;
@@ -51,6 +54,21 @@ export class CreateNewCommentFail implements Action {
   constructor(public payload: any) {}
 }
 
+export class DeleteComment implements Action {
+  readonly type = DELETE_COMMENT;
+  constructor(public payload: string) {}
+}
+
+export class DeleteCommentSuccess implements Action {
+  readonly type = DELETE_COMMENT_SUCCESS;
+  constructor(public payload: Comment) {}
+}
+
+export class DeleteCommmentFail implements Action {
+  readonly type = DELETE_COMMENT_FAIL;
+  constructor(public payload: any) {}
+}
+
 // Comment action types
 export type CommentAction =
   | FetchComments
@@ -60,4 +78,7 @@ export type CommentAction =
   | SelectComment
   | CreateNewComment
   | CreateNewCommentSuccess
-  | CreateNewCommentFail;
+  | CreateNewCommentFail
+  | DeleteComment
+  | DeleteCommentSuccess
+  | DeleteCommmentFail;
