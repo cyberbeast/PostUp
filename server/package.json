@@ -9,10 +9,7 @@
 	},
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"build": "babel -d ./build ./server",
-		"prebuild": "rm -rf build/*",
-		"start": "NODE_ENV=production node ./build/index.js",
-		"prestart": "npm build"
+		"start": "nodemon ./server.js --exec babel-node"
 	},
 	"author": "cyberbeast",
 	"license": "MIT",

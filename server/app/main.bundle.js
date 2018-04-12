@@ -73,15 +73,15 @@ var AppComponent = /** @class */ (function () {
         this.store = store;
         this.dialog = dialog;
         this.title = 'app';
-        this.sidenavToggle$ = store.select(__WEBPACK_IMPORTED_MODULE_3__store__["u" /* getCurrentSidenavToggleSetting */]);
-        this.user$ = store.select(__WEBPACK_IMPORTED_MODULE_3__store__["v" /* getCurrentUser */]);
-        this.showCreateNewPostButton$ = store.select(__WEBPACK_IMPORTED_MODULE_3__store__["t" /* getCurrentShowCreateNewPostButtonSetting */]);
+        this.sidenavToggle$ = store.select(__WEBPACK_IMPORTED_MODULE_3__store__["v" /* getCurrentSidenavToggleSetting */]);
+        this.user$ = store.select(__WEBPACK_IMPORTED_MODULE_3__store__["w" /* getCurrentUser */]);
+        this.showCreateNewPostButton$ = store.select(__WEBPACK_IMPORTED_MODULE_3__store__["u" /* getCurrentShowCreateNewPostButtonSetting */]);
     }
     AppComponent.prototype.ngOnInit = function () {
-        this.store.dispatch(new __WEBPACK_IMPORTED_MODULE_3__store__["l" /* SetShowCreatePostButton */](true));
+        this.store.dispatch(new __WEBPACK_IMPORTED_MODULE_3__store__["m" /* SetShowCreatePostButton */](true));
     };
     AppComponent.prototype.toggleSidenav = function () {
-        this.store.dispatch(new __WEBPACK_IMPORTED_MODULE_3__store__["m" /* ToggleSidenav */]());
+        this.store.dispatch(new __WEBPACK_IMPORTED_MODULE_3__store__["n" /* ToggleSidenav */]());
     };
     AppComponent.prototype.openNewPostDialog = function () {
         var dialogRef = this.dialog.open(NewPostDialogComponent, {
@@ -96,7 +96,7 @@ var AppComponent = /** @class */ (function () {
         window.open('/auth/facebook/', '_self');
     };
     AppComponent.prototype.logout = function () {
-        this.store.dispatch(new __WEBPACK_IMPORTED_MODULE_3__store__["n" /* UserLogout */]());
+        this.store.dispatch(new __WEBPACK_IMPORTED_MODULE_3__store__["o" /* UserLogout */]());
     };
     AppComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
@@ -265,9 +265,9 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_3__angular_router__["c" /* RouterModule */].forRoot(appRoutes, { enableTracing: true } // <-- debugging purposes only
                 ),
                 __WEBPACK_IMPORTED_MODULE_8__ngrx_store__["j" /* StoreModule */].forRoot({}),
-                __WEBPACK_IMPORTED_MODULE_8__ngrx_store__["j" /* StoreModule */].forFeature('app', __WEBPACK_IMPORTED_MODULE_10__store__["y" /* reducers */]),
+                __WEBPACK_IMPORTED_MODULE_8__ngrx_store__["j" /* StoreModule */].forFeature('app', __WEBPACK_IMPORTED_MODULE_10__store__["z" /* reducers */]),
                 __WEBPACK_IMPORTED_MODULE_9__ngrx_effects__["c" /* EffectsModule */].forRoot([]),
-                __WEBPACK_IMPORTED_MODULE_9__ngrx_effects__["c" /* EffectsModule */].forFeature(__WEBPACK_IMPORTED_MODULE_10__store__["o" /* effects */]),
+                __WEBPACK_IMPORTED_MODULE_9__ngrx_effects__["c" /* EffectsModule */].forFeature(__WEBPACK_IMPORTED_MODULE_10__store__["p" /* effects */]),
                 __WEBPACK_IMPORTED_MODULE_11__ngrx_store_devtools__["a" /* StoreDevtoolsModule */].instrument({
                     maxAge: 25,
                     logOnly: __WEBPACK_IMPORTED_MODULE_4__environments_environment__["a" /* environment */].production // Restrict extension to log-only mode
@@ -319,11 +319,11 @@ var GraphQLModule = /** @class */ (function () {
     function GraphQLModule(apollo, httpLink) {
         // Create an http link:
         var http = httpLink.create({
-            uri: 'http://3287c204.ngrok.io/graphql'
+            uri: 'http://postup.pagekite.me/graphql'
         });
         // Create a WebSocket link
         var ws = new __WEBPACK_IMPORTED_MODULE_7_apollo_link_ws__["a" /* WebSocketLink */]({
-            uri: "ws://3287c204.ngrok.io/subscriptions",
+            uri: "ws://postup.pagekite.me/subscriptions",
             options: {
                 reconnect: true
             }
@@ -404,16 +404,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var NavbarComponent = /** @class */ (function () {
     function NavbarComponent(store) {
         this.store = store;
-        this.user$ = store.select(__WEBPACK_IMPORTED_MODULE_2__store__["v" /* getCurrentUser */]);
+        this.user$ = store.select(__WEBPACK_IMPORTED_MODULE_2__store__["w" /* getCurrentUser */]);
     }
     NavbarComponent.prototype.toggleSidenav = function () {
-        this.store.dispatch(new __WEBPACK_IMPORTED_MODULE_2__store__["m" /* ToggleSidenav */]());
+        this.store.dispatch(new __WEBPACK_IMPORTED_MODULE_2__store__["n" /* ToggleSidenav */]());
     };
     NavbarComponent.prototype.login = function () {
         window.open('/auth/facebook/', '_self');
     };
     NavbarComponent.prototype.ngOnInit = function () {
-        this.store.dispatch(new __WEBPACK_IMPORTED_MODULE_2__store__["g" /* FetchUser */]());
+        this.store.dispatch(new __WEBPACK_IMPORTED_MODULE_2__store__["h" /* FetchUser */]());
     };
     NavbarComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
@@ -458,7 +458,7 @@ module.exports = "<mat-card>\n  <mat-card-title-group>\n    <mat-card-title>Crea
 /***/ "../../../../../src/app/post-detail/post-detail.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"bounds\" style=\"overflow:hidden\">\n\n  <div class=\"content\" fxLayout=\"row\" fxLayout.xs=\"column\" fxFlexFill>\n\n    <div fxFlex=\"70\" class=\"postSection\" fxFlex.xs=\"55\">\n      <mat-card style=\"height:90vh; margin:1.5% 1% 2% 1%\">\n        <mat-card-header>\n          <img mat-card-avatar src=\"{{(selectedPost$ | async)?.author.profileImage}}\">\n          <mat-card-title>{{(selectedPost$ | async)?.author.firstName}} {{(selectedPost$ | async)?.author.lastName}}</mat-card-title>\n\n          <mat-card-subtitle>{{(selectedPost$ | async)?.views}} views</mat-card-subtitle>\n        </mat-card-header>\n        <mat-divider></mat-divider>\n        <br />\n\n        <mat-card-title>{{(selectedPost$ | async)?.title}}</mat-card-title>\n        <mat-card-content>\n          {{(selectedPost$ | async)?.content}}\n        </mat-card-content>\n      </mat-card>\n    </div>\n    <div fxFlex class=\"commentSection\">\n\n      <mat-card style=\"height:98%; margin:3% 2% 2% 1%; padding:0%\">\n        <mat-toolbar style=\"background: white; padding:0\">\n          <span style=\"padding-right: 1em;\">\n            <button *ngIf=\"this.commentNavHistory.length > 1\" mat-icon-button (click)=\"previous()\">\n              <mat-icon>keyboard_arrow_left</mat-icon>\n            </button>\n          </span>\n          <span>Comments</span>\n        </mat-toolbar>\n        <mat-card-title>\n        </mat-card-title>\n        <mat-divider></mat-divider>\n\n        <div style=\"height: 95%\">\n\n          <div class=\"content\" fxLayout=\"column\" fxFlexFill>\n            <div fxFlex style=\"overflow:auto\">\n              <div *ngIf=\"(selectedComment$ | async) !== null\">\n                <mat-card style=\"margin: 2%\">\n                  <mat-card-header>\n                    <img mat-list-icon mat-card-avatar style=\"height:10%; width: 10%;\" src=\"{{(selectedComment$|async)?.author.profileImage}}\">\n                    <mat-card-title style=\"margin-bottom: 0;\">{{(selectedComment$|async)?.comment}}</mat-card-title>\n                    <mat-card-subtitle>\n                      <p mat-line style=\"font-size:x-small; color:rgba(0, 0, 0, 0.54)\">\n                        {{(selectedComment$|async)?.author.firstName}} {{(selectedComment$|async)?.author.lastName}}\n                      </p>\n                    </mat-card-subtitle>\n                  </mat-card-header>\n\n                  <mat-card-actions *ngIf=\"(selectedComment$|async)?.author.id === (currentUser$ | async).id\">\n                    <button mat-icon-button color=\"warn\">\n                      <mat-icon aria-label=\"Example icon-button with a heart icon\">delete</mat-icon>\n                    </button>\n                  </mat-card-actions>\n                </mat-card>\n\n              </div>\n              <mat-list>\n                <mat-list-item *ngFor=\"let comment of (allComments$ | async); let i = index\" (mouseenter)=\"commentIndex= i\" (mouseleave)=\"commentIndex = -1\">\n                  <img mat-list-icon mat-card-avatar src=\"{{comment.author.profileImage}}\">\n                  <p mat-line>{{comment.comment}}</p>\n                  <p mat-line style=\"font-size:x-small; color:rgba(0, 0, 0, 0.54)\"> {{comment.replyCount}} replies </p>\n                  <mat-icon (click)=\"setParent(comment.id, comment)\" *ngIf=\"commentIndex == i\" style=\"color: rgba(0, 0, 0, 0.54); cursor: pointer;\">reply</mat-icon>\n                </mat-list-item>\n              </mat-list>\n\n            </div>\n            <div fxFlex=\"16\" fxFlexOrder=\"2\" fxFlex.xs=\"55\">\n              <mat-divider></mat-divider>\n              <mat-form-field style=\"width: 80%; padding-left:2%\">\n                <input #comment [(ngModel)]=\"commentValue\" matInput placeholder=\"Comment\">\n              </mat-form-field>\n              <button mat-icon-button color=\"primary\" (click)=\"createComment(comment.value)\">\n                <mat-icon aria-label=\"send-icon\">send</mat-icon>\n              </button>\n            </div>\n\n          </div>\n\n        </div>\n      </mat-card>\n    </div>\n\n  </div>\n\n</div>\n"
+module.exports = "<div class=\"bounds\" style=\"overflow:hidden\">\n\n  <div class=\"content\" fxLayout=\"row\" fxLayout.xs=\"column\" fxFlexFill>\n\n    <div fxFlex=\"70\" class=\"postSection\" fxFlex.xs=\"55\">\n      <mat-card style=\"height:90vh; margin:1.5% 1% 2% 1%\">\n        <mat-card-header>\n          <img mat-card-avatar src=\"{{(selectedPost$ | async)?.author.profileImage}}\">\n          <mat-card-title>{{(selectedPost$ | async)?.author.firstName}} {{(selectedPost$ | async)?.author.lastName}}</mat-card-title>\n\n          <mat-card-subtitle>{{(selectedPost$ | async)?.views}} views</mat-card-subtitle>\n        </mat-card-header>\n        <mat-divider></mat-divider>\n        <br />\n\n        <mat-card-title>{{(selectedPost$ | async)?.title}}</mat-card-title>\n        <mat-card-content>\n          {{(selectedPost$ | async)?.content}}\n        </mat-card-content>\n      </mat-card>\n    </div>\n    <div fxFlex class=\"commentSection\">\n\n      <mat-card style=\"height:98%; margin:3% 2% 2% 1%; padding:0%\">\n        <mat-toolbar style=\"background: white; padding:0\">\n          <span style=\"padding-right: 1em;\">\n            <button *ngIf=\"this.commentNavHistory.length > 1\" mat-icon-button (click)=\"previous()\">\n              <mat-icon>keyboard_arrow_left</mat-icon>\n            </button>\n          </span>\n          <span>Comments</span>\n        </mat-toolbar>\n        <mat-card-title>\n        </mat-card-title>\n        <mat-divider></mat-divider>\n\n        <div style=\"height: 95%\">\n\n          <div class=\"content\" fxLayout=\"column\" fxFlexFill>\n            <div fxFlex style=\"overflow:auto\">\n              <div *ngIf=\"(selectedComment) !== null\">\n                <mat-card style=\"margin: 2%\">\n                  <mat-card-header>\n                    <img mat-list-icon mat-card-avatar style=\"height:10%; width: 10%;\" src=\"{{(selectedComment)?.author.profileImage}}\">\n                    <mat-card-title style=\"margin-bottom: 0;\">{{(selectedComment)?.comment}}</mat-card-title>\n                    <mat-card-subtitle>\n                      <p mat-line style=\"font-size:x-small; color:rgba(0, 0, 0, 0.54)\">\n                        {{(selectedComment)?.author.firstName}} {{(selectedComment)?.author.lastName}}\n                      </p>\n                    </mat-card-subtitle>\n                  </mat-card-header>\n\n                  <mat-card-actions *ngIf=\"(selectedComment)?.author.id === (currentUser$ | async).id\">\n                    <button mat-icon-button color=\"warn\" (click)=\"deleteComment(selectedComment.id)\">\n                      <mat-icon aria-label=\"Example icon-button with a heart icon\">delete</mat-icon>\n                    </button>\n                  </mat-card-actions>\n                </mat-card>\n\n              </div>\n              <mat-list>\n                <mat-list-item *ngFor=\"let comment of (allComments$ | async); let i = index\" (mouseenter)=\"commentIndex= i\" (mouseleave)=\"commentIndex = -1\">\n                  <img mat-list-icon mat-card-avatar src=\"{{comment.author.profileImage}}\">\n                  <p mat-line>{{comment.comment}}</p>\n                  <p mat-line style=\"font-size:x-small; color:rgba(0, 0, 0, 0.54)\"> {{comment.replyCount}} replies </p>\n                  <mat-icon (click)=\"setParent(comment.id, comment)\" *ngIf=\"commentIndex == i\" style=\"color: rgba(0, 0, 0, 0.54); cursor: pointer;\">reply</mat-icon>\n                </mat-list-item>\n              </mat-list>\n\n            </div>\n            <div fxFlex=\"16\" fxFlexOrder=\"2\" fxFlex.xs=\"55\">\n              <mat-divider></mat-divider>\n              <mat-form-field style=\"width: 80%; padding-left:2%\">\n                <input #comment [(ngModel)]=\"commentValue\" matInput placeholder=\"Comment\">\n              </mat-form-field>\n              <button mat-icon-button color=\"primary\" (click)=\"createComment(comment.value)\">\n                <mat-icon aria-label=\"send-icon\">send</mat-icon>\n              </button>\n            </div>\n\n          </div>\n\n        </div>\n      </mat-card>\n    </div>\n\n  </div>\n\n</div>\n"
 
 /***/ }),
 
@@ -509,17 +509,19 @@ var PostDetailComponent = /** @class */ (function () {
         this.store = store;
         this.history = [];
         this.commentValue = '';
-        this.selectedPost$ = store.select(__WEBPACK_IMPORTED_MODULE_3__store__["x" /* getSelectedPost */]);
-        this.allComments$ = store.select(__WEBPACK_IMPORTED_MODULE_3__store__["p" /* getAllComments */]);
-        this.selectedComment$ = store.select(__WEBPACK_IMPORTED_MODULE_3__store__["w" /* getSelectedComment */]);
-        store.select(__WEBPACK_IMPORTED_MODULE_3__store__["r" /* getCurrentNavHistorySetting */]).subscribe(function (history) {
+        this.selectedPost$ = store.select(__WEBPACK_IMPORTED_MODULE_3__store__["y" /* getSelectedPost */]);
+        this.allComments$ = store.select(__WEBPACK_IMPORTED_MODULE_3__store__["q" /* getAllComments */]);
+        store
+            .select(__WEBPACK_IMPORTED_MODULE_3__store__["x" /* getSelectedComment */])
+            .subscribe(function (selectedComment) { return (_this.selectedComment = selectedComment); });
+        store.select(__WEBPACK_IMPORTED_MODULE_3__store__["s" /* getCurrentNavHistorySetting */]).subscribe(function (history) {
             _this.commentNavHistory = history;
         });
         store
-            .select(__WEBPACK_IMPORTED_MODULE_3__store__["s" /* getCurrentParentElementSetting */])
+            .select(__WEBPACK_IMPORTED_MODULE_3__store__["t" /* getCurrentParentElementSetting */])
             .subscribe(function (p) { return (_this.currentParent = p); });
-        store.dispatch(new __WEBPACK_IMPORTED_MODULE_3__store__["l" /* SetShowCreatePostButton */](false));
-        this.currentUser$ = store.select(__WEBPACK_IMPORTED_MODULE_3__store__["v" /* getCurrentUser */]);
+        store.dispatch(new __WEBPACK_IMPORTED_MODULE_3__store__["m" /* SetShowCreatePostButton */](false));
+        this.currentUser$ = store.select(__WEBPACK_IMPORTED_MODULE_3__store__["w" /* getCurrentUser */]);
     }
     PostDetailComponent.prototype.createComment = function (comment) {
         this.commentValue = '';
@@ -529,24 +531,30 @@ var PostDetailComponent = /** @class */ (function () {
             timestamp: new Date().toISOString()
         }));
     };
+    PostDetailComponent.prototype.deleteComment = function (id) {
+        console.log('Deleting... ', id);
+        this.store.dispatch(new __WEBPACK_IMPORTED_MODULE_3__store__["e" /* DeleteComment */](id));
+        this.store.dispatch(new __WEBPACK_IMPORTED_MODULE_3__store__["k" /* SelectComment */](id));
+        this.store.dispatch(new __WEBPACK_IMPORTED_MODULE_3__store__["g" /* FetchComments */]());
+    };
     PostDetailComponent.prototype.previous = function () {
-        this.store.dispatch(new __WEBPACK_IMPORTED_MODULE_3__store__["h" /* PopParent */]());
+        this.store.dispatch(new __WEBPACK_IMPORTED_MODULE_3__store__["i" /* PopParent */]());
         var prev = this.commentNavHistory[this.commentNavHistory.length - 1];
-        this.store.dispatch(new __WEBPACK_IMPORTED_MODULE_3__store__["h" /* PopParent */]());
+        this.store.dispatch(new __WEBPACK_IMPORTED_MODULE_3__store__["i" /* PopParent */]());
         this.setParent(prev);
     };
     PostDetailComponent.prototype.setParent = function (parent) {
         console.log(this.commentNavHistory);
-        this.store.dispatch(new __WEBPACK_IMPORTED_MODULE_3__store__["i" /* PushParent */](parent));
-        this.store.dispatch(new __WEBPACK_IMPORTED_MODULE_3__store__["j" /* SelectComment */](parent));
-        this.store.dispatch(new __WEBPACK_IMPORTED_MODULE_3__store__["f" /* FetchComments */]());
+        this.store.dispatch(new __WEBPACK_IMPORTED_MODULE_3__store__["j" /* PushParent */](parent));
+        this.store.dispatch(new __WEBPACK_IMPORTED_MODULE_3__store__["k" /* SelectComment */](parent));
+        this.store.dispatch(new __WEBPACK_IMPORTED_MODULE_3__store__["g" /* FetchComments */]());
     };
     PostDetailComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.route.paramMap.subscribe(function (params) {
             console.log(params.get('id'));
             _this.postId = params.get('id');
-            _this.store.dispatch(new __WEBPACK_IMPORTED_MODULE_3__store__["k" /* SelectPost */](params.get('id')));
+            _this.store.dispatch(new __WEBPACK_IMPORTED_MODULE_3__store__["l" /* SelectPost */](params.get('id')));
             _this.setParent(params.get('id'));
         });
     };
@@ -617,13 +625,13 @@ var PostsComponent = /** @class */ (function () {
     function PostsComponent(store, router) {
         this.store = store;
         this.router = router;
-        this.allPosts$ = store.select(__WEBPACK_IMPORTED_MODULE_3__store__["q" /* getAllPosts */]);
+        this.allPosts$ = store.select(__WEBPACK_IMPORTED_MODULE_3__store__["r" /* getAllPosts */]);
     }
     PostsComponent.prototype.view = function (id) {
         this.router.navigate(['/posts', id]);
     };
     PostsComponent.prototype.ngOnInit = function () {
-        this.store.dispatch(new __WEBPACK_IMPORTED_MODULE_3__store__["e" /* FetchAllPosts */]());
+        this.store.dispatch(new __WEBPACK_IMPORTED_MODULE_3__store__["f" /* FetchAllPosts */]());
     };
     PostsComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
@@ -697,20 +705,20 @@ var PostService = /** @class */ (function () {
         this.http = http;
         this.apollo = apollo;
         this.store = store;
-        store.select(__WEBPACK_IMPORTED_MODULE_7__store__["s" /* getCurrentParentElementSetting */]).subscribe(function (parent) {
+        store.select(__WEBPACK_IMPORTED_MODULE_7__store__["t" /* getCurrentParentElementSetting */]).subscribe(function (parent) {
             _this.currentParent = parent;
         });
-        store.select(__WEBPACK_IMPORTED_MODULE_7__store__["r" /* getCurrentNavHistorySetting */]).subscribe(function (history) {
+        store.select(__WEBPACK_IMPORTED_MODULE_7__store__["s" /* getCurrentNavHistorySetting */]).subscribe(function (history) {
             _this.currentCommentNavHistory = history;
         });
-        store.select(__WEBPACK_IMPORTED_MODULE_7__store__["x" /* getSelectedPost */]).subscribe(function (v) {
+        store.select(__WEBPACK_IMPORTED_MODULE_7__store__["y" /* getSelectedPost */]).subscribe(function (v) {
             _this.selectedPost = v;
         });
     }
     PostService.prototype.selectPost = function (id) {
         return this.apollo
             .watchQuery({
-            query: __WEBPACK_IMPORTED_MODULE_8__queries__["f" /* SELECT_POST */],
+            query: __WEBPACK_IMPORTED_MODULE_8__queries__["g" /* SELECT_POST */],
             variables: {
                 id: id
             }
@@ -720,10 +728,10 @@ var PostService = /** @class */ (function () {
     PostService.prototype.fetchPostsAndSubscribeToUpdates = function () {
         var _this = this;
         this.allPostsQuery = this.apollo.watchQuery({
-            query: __WEBPACK_IMPORTED_MODULE_8__queries__["g" /* fetchPosts */]
+            query: __WEBPACK_IMPORTED_MODULE_8__queries__["h" /* fetchPosts */]
         });
         this.allPostsQuery.subscribeToMore({
-            document: __WEBPACK_IMPORTED_MODULE_8__queries__["e" /* NEW_POSTS_CREATED_SUBSCRIPTION */],
+            document: __WEBPACK_IMPORTED_MODULE_8__queries__["f" /* NEW_POSTS_CREATED_SUBSCRIPTION */],
             updateQuery: function (prev, _a) {
                 var subscriptionData = _a.subscriptionData;
                 if (!subscriptionData.data) {
@@ -734,6 +742,16 @@ var PostService = /** @class */ (function () {
             }
         });
         return this.allPostsQuery.valueChanges.pipe(Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["a" /* catchError */])(function (error) { return __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__["a" /* Observable */].throw(error.json()); }));
+    };
+    PostService.prototype.deleteComment = function (id) {
+        return this.apollo
+            .mutate({
+            mutation: __WEBPACK_IMPORTED_MODULE_8__queries__["c" /* DELETE_COMMENT_MUTATION */],
+            variables: {
+                id: id
+            }
+        })
+            .pipe(Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["a" /* catchError */])(function (error) { return __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__["a" /* Observable */].throw(error.json()); }));
     };
     PostService.prototype.createPost = function (newPost) {
         return this.apollo
@@ -760,15 +778,15 @@ var PostService = /** @class */ (function () {
     PostService.prototype.fetchCommentsAndSubscribeToUpdates = function () {
         var _this = this;
         this.allCommentsQuery = this.apollo.watchQuery({
-            query: __WEBPACK_IMPORTED_MODULE_8__queries__["c" /* GET_COMMENTS */],
+            query: __WEBPACK_IMPORTED_MODULE_8__queries__["d" /* GET_COMMENTS */],
             variables: {
                 id: this.currentParent
             }
         });
-        this.store.select(__WEBPACK_IMPORTED_MODULE_7__store__["x" /* getSelectedPost */]).subscribe(function (v) {
+        this.store.select(__WEBPACK_IMPORTED_MODULE_7__store__["y" /* getSelectedPost */]).subscribe(function (v) {
             if (v !== null) {
                 _this.allCommentsQuery.subscribeToMore({
-                    document: __WEBPACK_IMPORTED_MODULE_8__queries__["d" /* NEW_COMMENT_ADDED_SUBSCRIPTION */],
+                    document: __WEBPACK_IMPORTED_MODULE_8__queries__["e" /* NEW_COMMENT_ADDED_SUBSCRIPTION */],
                     variables: {
                         post: v.id
                     },
@@ -803,13 +821,14 @@ var PostService = /** @class */ (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return fetchPosts; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return NEW_COMMENT_ADDED_SUBSCRIPTION; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return NEW_POSTS_CREATED_SUBSCRIPTION; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return fetchPosts; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return NEW_COMMENT_ADDED_SUBSCRIPTION; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return NEW_POSTS_CREATED_SUBSCRIPTION; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return CREATE_POST_MUTATION; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CREATE_COMMENT_MUTATION; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return SELECT_POST; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return GET_COMMENTS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return SELECT_POST; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return GET_COMMENTS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return DELETE_COMMENT_MUTATION; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_graphql_tag__ = __webpack_require__("../../../../graphql-tag/src/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_graphql_tag___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_graphql_tag__);
 
@@ -820,7 +839,8 @@ var CREATE_POST_MUTATION = (_d = ["\n  mutation createPost($newPost: PostInput!)
 var CREATE_COMMENT_MUTATION = (_e = ["\n  mutation createComment($newComment: CommentInput!, $post: String!) {\n    createComment(comment: $newComment, post: $post) {\n      id\n    }\n  }\n"], _e.raw = ["\n  mutation createComment($newComment: CommentInput!, $post: String!) {\n    createComment(comment: $newComment, post: $post) {\n      id\n    }\n  }\n"], __WEBPACK_IMPORTED_MODULE_0_graphql_tag___default()(_e));
 var SELECT_POST = (_f = ["\n  query postById($id: String!) {\n    postById(id: $id) {\n      id\n      title\n      content\n      author {\n        id\n        firstName\n        lastName\n        profileImage\n      }\n      views\n    }\n  }\n"], _f.raw = ["\n  query postById($id: String!) {\n    postById(id: $id) {\n      id\n      title\n      content\n      author {\n        id\n        firstName\n        lastName\n        profileImage\n      }\n      views\n    }\n  }\n"], __WEBPACK_IMPORTED_MODULE_0_graphql_tag___default()(_f));
 var GET_COMMENTS = (_g = ["\n  query commentsByParentId($id: String!) {\n    commentsByParentId(id: $id) {\n      id\n      author {\n        id\n        firstName\n        lastName\n        profileImage\n      }\n      parent\n      comment\n      timestamp\n      replyCount\n    }\n  }\n"], _g.raw = ["\n  query commentsByParentId($id: String!) {\n    commentsByParentId(id: $id) {\n      id\n      author {\n        id\n        firstName\n        lastName\n        profileImage\n      }\n      parent\n      comment\n      timestamp\n      replyCount\n    }\n  }\n"], __WEBPACK_IMPORTED_MODULE_0_graphql_tag___default()(_g));
-var _a, _b, _c, _d, _e, _f, _g;
+var DELETE_COMMENT_MUTATION = (_h = ["\n  mutation deleteCommentById($id: String!) {\n    deleteCommentById(id: $id) {\n      id\n      author {\n        id\n        firstName\n        lastName\n        profileImage\n      }\n      parent\n      comment\n      timestamp\n      replyCount\n    }\n  }\n"], _h.raw = ["\n  mutation deleteCommentById($id: String!) {\n    deleteCommentById(id: $id) {\n      id\n      author {\n        id\n        firstName\n        lastName\n        profileImage\n      }\n      parent\n      comment\n      timestamp\n      replyCount\n    }\n  }\n"], __WEBPACK_IMPORTED_MODULE_0_graphql_tag___default()(_h));
+var _a, _b, _c, _d, _e, _f, _g, _h;
 
 
 /***/ }),
@@ -887,22 +907,28 @@ var UserService = /** @class */ (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return FETCH_COMMENTS; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return FETCH_COMMENTS_SUCCESS; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return FETCH_COMMENTS_FAIL; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "k", function() { return FETCH_COMMENTS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "m", function() { return FETCH_COMMENTS_SUCCESS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "l", function() { return FETCH_COMMENTS_FAIL; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return APPEND_NEW_COMMENT; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "m", function() { return SELECT_COMMENT; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "q", function() { return SELECT_COMMENT; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return CREATE_NEW_COMMENT; });
 /* unused harmony export CREATE_NEW_COMMENT_SUCCESS */
 /* unused harmony export CREATE_NEW_COMMENT_FAIL */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return FetchComments; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "l", function() { return FetchCommentsSuccess; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "k", function() { return FetchCommentsFail; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return DELETE_COMMENT; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return DELETE_COMMENT_SUCCESS; });
+/* unused harmony export DELETE_COMMENT_FAIL */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "n", function() { return FetchComments; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "p", function() { return FetchCommentsSuccess; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "o", function() { return FetchCommentsFail; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return AppendNewComment; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "n", function() { return SelectComment; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "r", function() { return SelectComment; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return CreateNewComment; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return CreateNewCommentSuccess; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return CreateNewCommentFail; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return DeleteComment; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return DeleteCommentSuccess; });
+/* unused harmony export DeleteCommmentFail */
 var FETCH_COMMENTS = '[Comment] Fetch Comments';
 var FETCH_COMMENTS_SUCCESS = '[Comment] Fetch Comments Success';
 var FETCH_COMMENTS_FAIL = '[Comment] Fetch Comments Fail';
@@ -911,6 +937,9 @@ var SELECT_COMMENT = '[Comment] Select Comment';
 var CREATE_NEW_COMMENT = '[Comment] Create New';
 var CREATE_NEW_COMMENT_SUCCESS = '[Comment] Create New - Success';
 var CREATE_NEW_COMMENT_FAIL = '[Comment] Create New - Fail';
+var DELETE_COMMENT = '[Comment] Delete Comment';
+var DELETE_COMMENT_SUCCESS = '[Comment] Delete Comment - Success';
+var DELETE_COMMENT_FAIL = '[Comment] Delete Comment - Fail';
 var FetchComments = /** @class */ (function () {
     function FetchComments() {
         this.type = FETCH_COMMENTS;
@@ -973,6 +1002,30 @@ var CreateNewCommentFail = /** @class */ (function () {
     return CreateNewCommentFail;
 }());
 
+var DeleteComment = /** @class */ (function () {
+    function DeleteComment(payload) {
+        this.payload = payload;
+        this.type = DELETE_COMMENT;
+    }
+    return DeleteComment;
+}());
+
+var DeleteCommentSuccess = /** @class */ (function () {
+    function DeleteCommentSuccess(payload) {
+        this.payload = payload;
+        this.type = DELETE_COMMENT_SUCCESS;
+    }
+    return DeleteCommentSuccess;
+}());
+
+var DeleteCommmentFail = /** @class */ (function () {
+    function DeleteCommmentFail(payload) {
+        this.payload = payload;
+        this.type = DELETE_COMMENT_FAIL;
+    }
+    return DeleteCommmentFail;
+}());
+
 
 
 /***/ }),
@@ -982,29 +1035,30 @@ var CreateNewCommentFail = /** @class */ (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__settings_actions__ = __webpack_require__("../../../../../src/app/store/actions/settings.actions.ts");
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "k", function() { return __WEBPACK_IMPORTED_MODULE_0__settings_actions__["c"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "l", function() { return __WEBPACK_IMPORTED_MODULE_0__settings_actions__["d"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "o", function() { return __WEBPACK_IMPORTED_MODULE_0__settings_actions__["f"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "p", function() { return __WEBPACK_IMPORTED_MODULE_0__settings_actions__["h"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "l", function() { return __WEBPACK_IMPORTED_MODULE_0__settings_actions__["c"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "m", function() { return __WEBPACK_IMPORTED_MODULE_0__settings_actions__["d"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "p", function() { return __WEBPACK_IMPORTED_MODULE_0__settings_actions__["f"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "q", function() { return __WEBPACK_IMPORTED_MODULE_0__settings_actions__["h"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__user_actions__ = __webpack_require__("../../../../../src/app/store/actions/user.actions.ts");
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_1__user_actions__["a"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "h", function() { return __WEBPACK_IMPORTED_MODULE_1__user_actions__["d"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "i", function() { return __WEBPACK_IMPORTED_MODULE_1__user_actions__["e"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "j", function() { return __WEBPACK_IMPORTED_MODULE_1__user_actions__["f"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "q", function() { return __WEBPACK_IMPORTED_MODULE_1__user_actions__["g"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "r", function() { return __WEBPACK_IMPORTED_MODULE_1__user_actions__["j"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "s", function() { return __WEBPACK_IMPORTED_MODULE_1__user_actions__["k"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "t", function() { return __WEBPACK_IMPORTED_MODULE_1__user_actions__["l"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "f", function() { return __WEBPACK_IMPORTED_MODULE_1__user_actions__["a"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "i", function() { return __WEBPACK_IMPORTED_MODULE_1__user_actions__["d"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "j", function() { return __WEBPACK_IMPORTED_MODULE_1__user_actions__["e"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "k", function() { return __WEBPACK_IMPORTED_MODULE_1__user_actions__["f"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "r", function() { return __WEBPACK_IMPORTED_MODULE_1__user_actions__["g"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "s", function() { return __WEBPACK_IMPORTED_MODULE_1__user_actions__["j"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "t", function() { return __WEBPACK_IMPORTED_MODULE_1__user_actions__["k"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "u", function() { return __WEBPACK_IMPORTED_MODULE_1__user_actions__["l"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__post_actions__ = __webpack_require__("../../../../../src/app/store/actions/post.actions.ts");
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_2__post_actions__["b"]; });
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_2__post_actions__["f"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "f", function() { return __WEBPACK_IMPORTED_MODULE_2__post_actions__["l"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "n", function() { return __WEBPACK_IMPORTED_MODULE_2__post_actions__["r"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "g", function() { return __WEBPACK_IMPORTED_MODULE_2__post_actions__["l"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "o", function() { return __WEBPACK_IMPORTED_MODULE_2__post_actions__["r"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__comment_actions__ = __webpack_require__("../../../../../src/app/store/actions/comment.actions.ts");
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_3__comment_actions__["b"]; });
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_3__comment_actions__["d"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "g", function() { return __WEBPACK_IMPORTED_MODULE_3__comment_actions__["j"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "m", function() { return __WEBPACK_IMPORTED_MODULE_3__comment_actions__["n"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_3__comment_actions__["i"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "h", function() { return __WEBPACK_IMPORTED_MODULE_3__comment_actions__["n"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "n", function() { return __WEBPACK_IMPORTED_MODULE_3__comment_actions__["r"]; });
 
 
 
@@ -1282,18 +1336,26 @@ var CommentEffects = /** @class */ (function () {
         var _this = this;
         this.actions$ = actions$;
         this.postService = postService;
-        this.getAllComments$ = this.actions$.ofType(__WEBPACK_IMPORTED_MODULE_4__actions_comment_actions__["g" /* FETCH_COMMENTS */]).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["e" /* switchMap */])(function (action) {
+        this.getAllComments$ = this.actions$.ofType(__WEBPACK_IMPORTED_MODULE_4__actions_comment_actions__["k" /* FETCH_COMMENTS */]).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["e" /* switchMap */])(function (action) {
             return _this.postService.fetchCommentsAndSubscribeToUpdates().pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["c" /* map */])(function (comments) {
-                return new __WEBPACK_IMPORTED_MODULE_4__actions_comment_actions__["l" /* FetchCommentsSuccess */](comments.data.commentsByParentId);
+                return new __WEBPACK_IMPORTED_MODULE_4__actions_comment_actions__["p" /* FetchCommentsSuccess */](comments.data.commentsByParentId);
             }), Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["a" /* catchError */])(function (error) {
                 console.log(JSON.stringify(error));
-                return Object(__WEBPACK_IMPORTED_MODULE_2_rxjs_observable_of__["a" /* of */])(new __WEBPACK_IMPORTED_MODULE_4__actions_comment_actions__["k" /* FetchCommentsFail */](error));
+                return Object(__WEBPACK_IMPORTED_MODULE_2_rxjs_observable_of__["a" /* of */])(new __WEBPACK_IMPORTED_MODULE_4__actions_comment_actions__["o" /* FetchCommentsFail */](error));
             }));
         }));
         this.createNewPost$ = this.actions$
             .ofType(__WEBPACK_IMPORTED_MODULE_4__actions_comment_actions__["c" /* CREATE_NEW_COMMENT */])
             .pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["e" /* switchMap */])(function (action) {
             return _this.postService.createComment(action.payload).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["c" /* map */])(function (response) { return new __WEBPACK_IMPORTED_MODULE_4__actions_comment_actions__["f" /* CreateNewCommentSuccess */](); }), Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["a" /* catchError */])(function (error) {
+                console.log(JSON.stringify(error));
+                return Object(__WEBPACK_IMPORTED_MODULE_2_rxjs_observable_of__["a" /* of */])(new __WEBPACK_IMPORTED_MODULE_4__actions_comment_actions__["e" /* CreateNewCommentFail */](error));
+            }));
+        }));
+        this.deleteComment$ = this.actions$.ofType(__WEBPACK_IMPORTED_MODULE_4__actions_comment_actions__["g" /* DELETE_COMMENT */]).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["e" /* switchMap */])(function (action) {
+            return _this.postService.deleteComment(action.payload).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["c" /* map */])(function (response) {
+                return new __WEBPACK_IMPORTED_MODULE_4__actions_comment_actions__["j" /* DeleteCommentSuccess */](response.data.deleteCommentById);
+            }), Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["a" /* catchError */])(function (error) {
                 console.log(JSON.stringify(error));
                 return Object(__WEBPACK_IMPORTED_MODULE_2_rxjs_observable_of__["a" /* of */])(new __WEBPACK_IMPORTED_MODULE_4__actions_comment_actions__["e" /* CreateNewCommentFail */](error));
             }));
@@ -1307,6 +1369,10 @@ var CommentEffects = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_1__ngrx_effects__["b" /* Effect */])(),
         __metadata("design:type", Object)
     ], CommentEffects.prototype, "createNewPost$", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1__ngrx_effects__["b" /* Effect */])(),
+        __metadata("design:type", Object)
+    ], CommentEffects.prototype, "deleteComment$", void 0);
     CommentEffects = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__ngrx_effects__["a" /* Actions */], __WEBPACK_IMPORTED_MODULE_5__services__["a" /* PostService */]])
@@ -1456,21 +1522,21 @@ var UserEffects = /** @class */ (function () {
         var _this = this;
         this.actions$ = actions$;
         this.userService = userService;
-        this.fetchUser$ = this.actions$.ofType(__WEBPACK_IMPORTED_MODULE_5__actions__["e" /* FETCH_USER */]).pipe(Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["e" /* switchMap */])(function (action) {
+        this.fetchUser$ = this.actions$.ofType(__WEBPACK_IMPORTED_MODULE_5__actions__["f" /* FETCH_USER */]).pipe(Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["e" /* switchMap */])(function (action) {
             console.log('IN HERE');
             return _this.userService.fetchUser().pipe(Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["d" /* mergeMap */])(function (currentUser) {
                 return Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_observable_from__["a" /* from */])([
-                    new __WEBPACK_IMPORTED_MODULE_5__actions__["j" /* FetchUserSuccess */](currentUser.data['me'])
+                    new __WEBPACK_IMPORTED_MODULE_5__actions__["k" /* FetchUserSuccess */](currentUser.data['me'])
                 ]);
             }), Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["a" /* catchError */])(function (error) {
                 console.log(JSON.stringify(error));
-                return Object(__WEBPACK_IMPORTED_MODULE_2_rxjs_observable_of__["a" /* of */])(new __WEBPACK_IMPORTED_MODULE_5__actions__["i" /* FetchUserFail */](error));
+                return Object(__WEBPACK_IMPORTED_MODULE_2_rxjs_observable_of__["a" /* of */])(new __WEBPACK_IMPORTED_MODULE_5__actions__["j" /* FetchUserFail */](error));
             }));
         }));
-        this.userLogout$ = this.actions$.ofType(__WEBPACK_IMPORTED_MODULE_5__actions__["q" /* USER_LOGOUT */]).pipe(Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["e" /* switchMap */])(function (action) {
+        this.userLogout$ = this.actions$.ofType(__WEBPACK_IMPORTED_MODULE_5__actions__["r" /* USER_LOGOUT */]).pipe(Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["e" /* switchMap */])(function (action) {
             return _this.userService
                 .logout()
-                .pipe(Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["c" /* map */])(function () { return new __WEBPACK_IMPORTED_MODULE_5__actions__["t" /* UserLogoutSuccess */](); }), Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["a" /* catchError */])(function (error) { return Object(__WEBPACK_IMPORTED_MODULE_2_rxjs_observable_of__["a" /* of */])(new __WEBPACK_IMPORTED_MODULE_5__actions__["s" /* UserLogoutFail */](error)); }));
+                .pipe(Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["c" /* map */])(function () { return new __WEBPACK_IMPORTED_MODULE_5__actions__["u" /* UserLogoutSuccess */](); }), Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["a" /* catchError */])(function (error) { return Object(__WEBPACK_IMPORTED_MODULE_2_rxjs_observable_of__["a" /* of */])(new __WEBPACK_IMPORTED_MODULE_5__actions__["t" /* UserLogoutFail */](error)); }));
         }));
     }
     __decorate([
@@ -1497,33 +1563,34 @@ var UserEffects = /** @class */ (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__reducers__ = __webpack_require__("../../../../../src/app/store/reducers/index.ts");
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "p", function() { return __WEBPACK_IMPORTED_MODULE_0__reducers__["a"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "q", function() { return __WEBPACK_IMPORTED_MODULE_0__reducers__["b"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "r", function() { return __WEBPACK_IMPORTED_MODULE_0__reducers__["c"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "s", function() { return __WEBPACK_IMPORTED_MODULE_0__reducers__["d"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "t", function() { return __WEBPACK_IMPORTED_MODULE_0__reducers__["e"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "u", function() { return __WEBPACK_IMPORTED_MODULE_0__reducers__["f"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "v", function() { return __WEBPACK_IMPORTED_MODULE_0__reducers__["g"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "w", function() { return __WEBPACK_IMPORTED_MODULE_0__reducers__["h"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "x", function() { return __WEBPACK_IMPORTED_MODULE_0__reducers__["i"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "y", function() { return __WEBPACK_IMPORTED_MODULE_0__reducers__["j"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "q", function() { return __WEBPACK_IMPORTED_MODULE_0__reducers__["a"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "r", function() { return __WEBPACK_IMPORTED_MODULE_0__reducers__["b"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "s", function() { return __WEBPACK_IMPORTED_MODULE_0__reducers__["c"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "t", function() { return __WEBPACK_IMPORTED_MODULE_0__reducers__["d"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "u", function() { return __WEBPACK_IMPORTED_MODULE_0__reducers__["e"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "v", function() { return __WEBPACK_IMPORTED_MODULE_0__reducers__["f"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "w", function() { return __WEBPACK_IMPORTED_MODULE_0__reducers__["g"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "x", function() { return __WEBPACK_IMPORTED_MODULE_0__reducers__["h"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "y", function() { return __WEBPACK_IMPORTED_MODULE_0__reducers__["i"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "z", function() { return __WEBPACK_IMPORTED_MODULE_0__reducers__["j"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__actions__ = __webpack_require__("../../../../../src/app/store/actions/index.ts");
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_1__actions__["a"]; });
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_1__actions__["b"]; });
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_1__actions__["c"]; });
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_1__actions__["d"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_1__actions__["f"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_1__actions__["e"]; });
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "f", function() { return __WEBPACK_IMPORTED_MODULE_1__actions__["g"]; });
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "g", function() { return __WEBPACK_IMPORTED_MODULE_1__actions__["h"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "h", function() { return __WEBPACK_IMPORTED_MODULE_1__actions__["k"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "h", function() { return __WEBPACK_IMPORTED_MODULE_1__actions__["i"]; });
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "i", function() { return __WEBPACK_IMPORTED_MODULE_1__actions__["l"]; });
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "j", function() { return __WEBPACK_IMPORTED_MODULE_1__actions__["m"]; });
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "k", function() { return __WEBPACK_IMPORTED_MODULE_1__actions__["n"]; });
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "l", function() { return __WEBPACK_IMPORTED_MODULE_1__actions__["o"]; });
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "m", function() { return __WEBPACK_IMPORTED_MODULE_1__actions__["p"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "n", function() { return __WEBPACK_IMPORTED_MODULE_1__actions__["r"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "n", function() { return __WEBPACK_IMPORTED_MODULE_1__actions__["q"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "o", function() { return __WEBPACK_IMPORTED_MODULE_1__actions__["s"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__effects__ = __webpack_require__("../../../../../src/app/store/effects/index.ts");
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "o", function() { return __WEBPACK_IMPORTED_MODULE_2__effects__["a"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "p", function() { return __WEBPACK_IMPORTED_MODULE_2__effects__["a"]; });
 
 
 
@@ -1557,10 +1624,10 @@ var initialState = {
 function reducer(state, action) {
     if (state === void 0) { state = initialState; }
     switch (action.type) {
-        case __WEBPACK_IMPORTED_MODULE_0__actions_comment_actions__["g" /* FETCH_COMMENTS */]: {
+        case __WEBPACK_IMPORTED_MODULE_0__actions_comment_actions__["k" /* FETCH_COMMENTS */]: {
             return __assign({}, state);
         }
-        case __WEBPACK_IMPORTED_MODULE_0__actions_comment_actions__["i" /* FETCH_COMMENTS_SUCCESS */]: {
+        case __WEBPACK_IMPORTED_MODULE_0__actions_comment_actions__["m" /* FETCH_COMMENTS_SUCCESS */]: {
             var comments = action.payload;
             var entities = comments.reduce(function (entities, comment) {
                 return __assign({}, entities, (_a = {}, _a[comment.id] = comment, _a));
@@ -1568,9 +1635,10 @@ function reducer(state, action) {
             }, __assign({}, state.entities));
             return __assign({}, state, { entities: entities });
         }
-        case __WEBPACK_IMPORTED_MODULE_0__actions_comment_actions__["h" /* FETCH_COMMENTS_FAIL */]: {
+        case __WEBPACK_IMPORTED_MODULE_0__actions_comment_actions__["l" /* FETCH_COMMENTS_FAIL */]: {
             return __assign({}, state);
         }
+        case __WEBPACK_IMPORTED_MODULE_0__actions_comment_actions__["h" /* DELETE_COMMENT_SUCCESS */]:
         case __WEBPACK_IMPORTED_MODULE_0__actions_comment_actions__["a" /* APPEND_NEW_COMMENT */]: {
             var comment = action.payload;
             var parent = comment.parent;
@@ -1582,16 +1650,11 @@ function reducer(state, action) {
                     _a));
                 parent = state.entities[parent].parent;
             }
-            // console.log(newObject);
-            // const entities = Object.assign({}, state.entities, newObject, {
-            //   [comment.id]: comment
-            // });
             var entities = __assign({}, state.entities, newObject, (_b = {}, _b[comment.id] = comment, _b));
-            // console.log(entities);
             console.log(__assign({}, state, { entities: entities }));
             return __assign({}, state, { entities: entities });
         }
-        case __WEBPACK_IMPORTED_MODULE_0__actions_comment_actions__["m" /* SELECT_COMMENT */]: {
+        case __WEBPACK_IMPORTED_MODULE_0__actions_comment_actions__["q" /* SELECT_COMMENT */]: {
             var temp = null;
             if (state.entities[action.payload] !== undefined) {
                 temp = state.entities[action.payload];

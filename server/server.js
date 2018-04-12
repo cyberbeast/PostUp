@@ -48,12 +48,12 @@ graphQLServer.use(
 	'/graphiql',
 	graphiqlExpress({
 		endpointURL: '/graphql',
-		subscriptionsEndpoint: `ws://3287c204.ngrok.io/subscriptions`
+		subscriptionsEndpoint: `ws://postup.pagekite.me/subscriptions`
 	})
 );
 graphQLServer.use('*', cors({ origin: 'http://localhost:4200' }));
 graphQLServer.use('*', cors({ origin: 'http://localhost:3000' }));
-graphQLServer.use('*', cors({ origin: 'http://3287c204.ngrok.io' }));
+graphQLServer.use('*', cors({ origin: 'http://postup.pagekite.me/' }));
 
 // Point static path to compiled app directory
 graphQLServer.use(express.static(path.join(__dirname, 'app')));
