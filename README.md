@@ -35,7 +35,7 @@ Install the angular app dependencies.
 
 ```sh
 $ cd PostUp/PostUpApp
-$ npm install && ng builld
+$ npm install && ng build
 ```
 
 Create a file called `.env` in `PostUp/server/` and specify the following environment variables.
