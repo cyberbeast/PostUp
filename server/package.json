@@ -27,7 +27,7 @@
 		"graphql-subscriptions": "^0.5.8",
 		"graphql-tools": "^2.21.0",
 		"lodash": "^4.17.5",
-		"mongoose": "^5.0.9",
+		"mongoose": "^5.7.5",
 		"passport": "^0.4.0",
 		"passport-facebook": "^2.1.1",
 		"subscriptions-transport-ws": "^0.9.6"
